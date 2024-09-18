@@ -39,96 +39,162 @@ public class PigGame {
 		PigGame newGame = new PigGame(); 			// Creating a instance of PigGame
 		Scanner enterTurn = new Scanner(System.in); // Creating a scanner
 		Boolean userTurn = true; 					// The user is playing the game
-		Boolean compTurn = false; 					//  The computer is playing the same 
+		Boolean compTurn = false; 					// The computer is playing the same 
 		int userCurrentScore = 0; 					// The user's current turn score 
 		int userTotalScore = 0; 					// The user's total score 
 		int compCurrentScore = 0; 					// The computer's current turn score 
 		int compTotalScore = 0; 					// The computer's total score 
-		char decision;
+		char decision;								// The user's input character
 		
-		Dice pigDice = new Dice();   // Creating a new instance of a Die
-		newGame.printIntroduction(); // Call the method to print the introduction 
-
+		Dice pigDice = new Dice();   // Creating a new instance of a Dice
+		newGame.printIntroduction(); // Call the method to print the introduction
+		
+		// The user's total score and the computer's score is less than 100
 		while(userTotalScore < 100 && compTotalScore < 100){
-		
+			
+			// The user's turn
 			while(userTurn == true) {
 				
+				//  If it's the start of a roll, print out the start info
 				if(userCurrentScore == 0){
 					System.out.println("**** USER Turn *** \n");
 					System.out.println("Your turn score:   " + userCurrentScore);
 					System.out.println("Your total score:   " + userTotalScore + "\n");
 				}
 				
-				// ask the user to either roll or hold (use the promptTester to get the char)
+				// Asks the user to either roll or hold
 				decision = Prompt.getChar("(r)oll or (h)old");
 				
-				// **the char is equal to h
+				// If the user enters an 'h' (user holds)
 				if(decision == 'h') {
 					System.out.println("You HOLD \n"); 
-					userTotalScore += userCurrentScore;
-					System.out.println("Your total score:   " + userTotalScore + "\n"); //add it to the total score
+					
+					// Add the current score to the total score
+					userTotalScore += userCurrentScore; 
+					
+					// Print out the total score 
+					System.out.println("Your total score:   " + userTotalScore + "\n");
+					
+					// Reset the user's current score to 0
 					userCurrentScore = 0;
-
+					
+					/* If the user's total score is greater than 100
+					   exit out of the user's turn */
 					if (userTotalScore >= 100) {
 						break;
 					}
 
-					// move to computer's turn
+					// Move to computer's turn
 					userTurn = false;
 					compTurn = true;
-				} else { 
-					// **while the char is equal to r 
-					System.out.println("You ROLL \n"); 
-					userCurrentScore += pigDice.roll(); // call the method to roll [role()] <- return the number you rolled
-					pigDice.printDice(); // print out the dice face 
 					
+				} else { 
+					// If the user enters an 'r' (user holds)
+					System.out.println("You ROLL \n");
+					
+					/* Call the method to roll and add the roll 
+					   to the user's current score */
+					userCurrentScore += pigDice.roll();
+					
+					// Call the method to print out the ASCII dice image
+					pigDice.printDice();
+					
+					// Ends the user's turn if the dice roll equals 1 
 					if(pigDice.getValue() == 1) {
+						
+						// Print out the total score of the user
 						System.out.println("Your total score:   " + userTotalScore + "\n");
+						
+						// Current score is reset to zero 
 						userCurrentScore = 0;
+						
+						// Move to the computer's turn
 						userTurn = false;
 						compTurn = true;
 					}
-				
+					
+					// Print out the current score and the total score
 					System.out.println("Your turn score:   " + userCurrentScore);	
 					System.out.println("Your total score:   " + userTotalScore + "\n");
 				}	
 					
 			}
 			
-			
+			// The computer's turn
 			while(compTurn == true) {
+				
+				//  If it's the start of a roll, print out the start info
 				if(compCurrentScore == 0){
 					System.out.println("**** COMPUTER'S Turn ***\n");
 					System.out.println("Computer's turn score:   " + compCurrentScore);
 					System.out.println("Computer's total score:   " + compTotalScore + "\n");
 				}
 			
-				if(compCurrentScore + pigDice.roll() < 20) {
+					// Ask user to press enter for computer to run
 					System.out.println("Press enter for computer's turn");
-					enterTurn.nextLine();
-					System.out.println("Computer will ROLL");
-					compCurrentScore += pigDice.getValue(); // call the method to roll [roll()] <- return the number you rolled
-					pigDice.printDice(); // print out the dice face 
 					
+					// Scanner will read the enter
+					enterTurn.nextLine();
+					
+					// Print that the computer is rolling 
+					System.out.println("Computer will ROLL");
+					
+					// Call the method to print out the ASCII dice image
+					pigDice.printDice(); 
+					
+				// The current score + the next roll is less than 20
+				if(compCurrentScore + pigDice.roll() < 20) {
+					
+					/**
+					// Ask user to press enter for computer to run
+					System.out.println("Press enter for computer's turn");
+					// Scanner will read the enter
+					enterTurn.nextLine();
+					
+					// Print that the computer is rolling 
+					System.out.println("Computer will ROLL");
+					
+					*/
+					
+					/* Call the method to get value of the roll and 
+					   add the value to the computer's current score */
+					compCurrentScore += pigDice.getValue(); 
+					
+					// Ends the computer's turn if the dice roll equals 1 
 					if(pigDice.getValue() == 1) {
-						System.out.println("COMPUTER BOZO ROLLED A 1 LOL");
+						
+						// Print out the computer's total score
 						System.out.println("Computer's total score:   " + compTotalScore + "\n");
+						
+						// Current score is reset to 0
 						compCurrentScore = 0;
+						
+						// Move to the user's turn
 						userTurn = true;
 						compTurn = false;
 						break; 
 					}	
-				
+					
+					// Print out the current score and the total score
 					System.out.println("Computer's turn score:   " + compCurrentScore);	
 					System.out.println("Computer's total score:   " + compTotalScore + "\n");
 				
-				} else {
+				} else { 
+					// The current score + the next roll is greater than 20
 					
+					/**
+					// Ask user to press enter for computer to run
 					System.out.println("Press enter for computer's turn");
-					enterTurn.nextLine(); 
+					// Scanner will read the enter
+					enterTurn.nextLine();
 					
+					// Print that the computer is rolling 
 					System.out.println("Computer will ROLL");
-					pigDice.printDice(); // print out the dice face 
+					
+					// Call the method to print out the ASCII dice image
+					pigDice.printDice();
+					*/
+	
 					System.out.println("Computer will HOLD");
 					compTotalScore += compCurrentScore + pigDice.getValue();
 					System.out.println("Computer's total score:   " + compTotalScore + "\n");
@@ -176,5 +242,3 @@ public class PigGame {
 
 	
 }
-	
-	
