@@ -1,11 +1,15 @@
+import java.util.Scanner;
 /**
  *	The game of Pig.
- *	(Description here)
  *
- *	@author	
- *	@since	
+ *	@author	Katie Wang
+ *	@since September 13th, 2024 
+ *
+ *        Runs a game where the user is pitted against the computer. Both the 
+ *        user or computer can roll the die or hold and score the sum of the turn.
+ *        The first one to score 100 points wins. 
  */
-import java.util.Scanner;
+
 public class PigGame {
 
 	/**	Print the introduction to the game */
@@ -32,19 +36,18 @@ public class PigGame {
 	}
 
 	public static void main(String[] args) {
-		PigGame p = new PigGame();
-		Scanner temp = new Scanner(System.in); 
-		Boolean userTurn = true;
-		Boolean compTurn = false;
-		// || The User's turn:
-		int userCurrentScore = 0;
-		int userTotalScore = 0;
-		int compCurrentScore = 0;
-		int compTotalScore = 0;
+		PigGame newGame = new PigGame(); 			// Creating a instance of PigGame
+		Scanner enterTurn = new Scanner(System.in); // Creating a scanner
+		Boolean userTurn = true; 					// The user is playing the game
+		Boolean compTurn = false; 					//  The computer is playing the same 
+		int userCurrentScore = 0; 					// The user's current turn score 
+		int userTotalScore = 0; 					// The user's total score 
+		int compCurrentScore = 0; 					// The computer's current turn score 
+		int compTotalScore = 0; 					// The computer's total score 
 		char decision;
 		
-		Dice pigDice = new Dice();
-		p.printIntroduction();
+		Dice pigDice = new Dice();   // Creating a new instance of a Die
+		newGame.printIntroduction(); // Call the method to print the introduction 
 
 		while(userTotalScore < 100 && compTotalScore < 100){
 		
@@ -102,7 +105,7 @@ public class PigGame {
 			
 				if(compCurrentScore + pigDice.roll() < 20) {
 					System.out.println("Press enter for computer's turn");
-					temp.nextLine();
+					enterTurn.nextLine();
 					System.out.println("Computer will ROLL");
 					compCurrentScore += pigDice.getValue(); // call the method to roll [roll()] <- return the number you rolled
 					pigDice.printDice(); // print out the dice face 
@@ -122,7 +125,7 @@ public class PigGame {
 				} else {
 					
 					System.out.println("Press enter for computer's turn");
-					temp.nextLine(); 
+					enterTurn.nextLine(); 
 					
 					System.out.println("Computer will ROLL");
 					pigDice.printDice(); // print out the dice face 
@@ -167,11 +170,11 @@ public class PigGame {
 			System.out.println("Womp womp rip bozo u lose");
 			System.out.println("Not very demure, not very mindful");
 		}
-
+		
+		enterTurn.close();
 	}
 
 	
-
 }
 	
 	
