@@ -45,18 +45,18 @@ public class PigGame {
 	}
 
 	public static void main(String[] args) {
-		PigGame newGame = new PigGame(); 			// Creating a instance of PigGame
+		PigGame newGame = new PigGame(); // Creating a instance of PigGame
 		Scanner enterTurn = new Scanner(System.in); // Next computer turn scanner
 		Scanner numTurns = new Scanner(System.in);  // Number of turns scanner
-		Boolean userTurn = true; 					// The user is playing the game
-		Boolean compTurn = false; 					// The computer is playing the same
-		int userCurrentScore = 0; 					// The user's current turn score
-		int userTotalScore = 0; 					// The user's total score
-		int compCurrentScore = 0; 					// The computer's current turn score
-		int compTotalScore = 0; 					// The computer's total score
-		char decision; 								// The user's input character
-		int turns = 0; 								// Number of statistic turns
-		int[] points = new int[26]; 				// Count of points computer rolls
+		Boolean userTurn = true; 		// The user is playing the game
+		Boolean compTurn = false; 		// The computer is playing the same
+		int userCurrentScore = 0; 		// The user's current turn score
+		int userTotalScore = 0; 		// The user's total score
+		int compCurrentScore = 0; 		// The computer's current turn score
+		int compTotalScore = 0; 		// The computer's total score
+		char decision; 					// The user's input character
+		int turns = 0; 					// Number of statistic turns
+		int[] points = new int[26]; 	// Count of points computer rolls
 
 		Dice pigDice = new Dice();   // Creating a new instance of a Dice
 		newGame.printIntroduction(); // Call the method to print the introduction
@@ -316,7 +316,7 @@ public class PigGame {
 			System.out.printf(" 24 %.5f%n", (double) points[24] / turns);
 			System.out.printf(" 25 %.5f%n", (double) points[25] / turns);
 			System.out.println();
-			
+
 			// close the int scanner
 			numTurns.close();
 		}
