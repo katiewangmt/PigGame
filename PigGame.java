@@ -1,20 +1,20 @@
 import java.util.Scanner;
 
 /**
- * Pig Game and Pig Statistics 
+ * Pig Game and Pig Statistics
  *
  * @author Katie Wang
  * @since September 13th, 2024
  *
  *        The user is prompted with two decisions. If the user chooses PigGame,
- * 		  run a game where the user is pitted against the computer. Both the
+ *        run a game where the user is pitted against the computer. Both the
  *        user or computer can roll the die or hold and score the sum of the
- *        turn. The first one to score 100 points wins. If the user chooses 
- * 		  PigStatistics, run a Monte Carlo statistical analysis to find the 
- * 		  probability of the computer's turn ending after holding at 20 points,
- * 		  or failing to hold at 20 points within the user's chosen number of 
- * 		  turns.  
- * 		  
+ *        turn. The first one to score 100 points wins. If the user chooses
+ *        PigStatistics, run a Monte Carlo statistical analysis to find the
+ *        probability of the computer's turn ending after holding at 20 points,
+ *        or failing to hold at 20 points within the user's chosen number of
+ *        turns.
+ * 
  */
 
 public class PigGame {
@@ -63,18 +63,15 @@ public class PigGame {
 
 		// Asks the user to either play game or statistics
 		decision = Prompt.getChar("Play game or Statistics (p or s)");
-		
 
 		if (decision == 'p') { // User plays the game
 
 			// User and computer's total score is less than win score
-			while (userTotalScore <  newGame.WINNING_SCORE && compTotalScore <  newGame.WINNING_SCORE) {
-
-
+			while (userTotalScore < newGame.WINNING_SCORE && compTotalScore < newGame.WINNING_SCORE) {
 
 				// User's turn
 				while (userTurn == true) {
-					
+
 					// If it's the start of a roll, print out the start info
 					if (userCurrentScore == 0) {
 						System.out.println(); // adding spacing
@@ -150,8 +147,6 @@ public class PigGame {
 					}
 
 				}
-
-
 
 				// The computer's turn
 				while (compTurn == true) {
@@ -261,8 +256,6 @@ public class PigGame {
 			// close the line scanner
 			enterTurn.close();
 
-
-			
 		} else { // User is running statistics
 			// Starting the statistic test
 			System.out.println(); // adding spacing
@@ -271,12 +264,12 @@ public class PigGame {
 			// Asks the user for number of turns to perform]
 			System.out.print("Number of turns (1000 - 1000000) -> ");
 			turns = numTurns.nextInt();
-			
+
 			// if the user's turn input value is not in bounds
-			while (!(turns >= 1000 && turns <= 1000000)){
+			while (!(turns >= 1000 && turns <= 1000000)) {
 				System.out.print("Number of turns (1000 - 1000000) -> ");
 				turns = numTurns.nextInt();
-			}	
+			}
 
 			System.out.println(); // adding spacing
 
@@ -305,7 +298,7 @@ public class PigGame {
 				compCurrentScore = 0;
 			}
 
-			// Printing out the probabilities 			
+			// Printing out the probabilities
 			System.out.println("       Estimated \n Score Probability");
 			System.out.printf(" 0  %.5f%n", (double) points[0] / turns);
 			System.out.printf(" 20 %.5f%n", (double) points[20] / turns);
