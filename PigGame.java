@@ -18,8 +18,8 @@ import java.util.Scanner;
  */
 
 public class PigGame {
-	private static final int WINNING_SCORE = 100;
-	private static final int COMPUTER_HOLD_THRESHOLD = 20;
+	private final int WINNING_SCORE = 100;
+	private final int COMPUTER_HOLD_THRESHOLD = 20;
 
 	/** Print the introduction to the game */
 	public void printIntroduction() {
@@ -69,7 +69,7 @@ public class PigGame {
 		if (decision == 'p') { // User plays the game
 
 			// User and computer's total score is less than win score
-			while (userTotalScore <  WINNING_SCORE && compTotalScore <  WINNING_SCORE) {
+			while (userTotalScore <  newGame.WINNING_SCORE && compTotalScore <  newGame.WINNING_SCORE) {
 
 
 
@@ -95,6 +95,7 @@ public class PigGame {
 						userTotalScore += userCurrentScore;
 
 						// Print out the total score
+						System.out.println("You HOLD");
 						System.out.println("Your total score:   " + userTotalScore + "\n");
 						System.out.println(); // adding spacing
 
@@ -105,7 +106,7 @@ public class PigGame {
 						 * If the user's total score is greater than 100
 						 * exit out of the user's turn
 						 */
-						if (userTotalScore >= WINNING_SCORE) {
+						if (userTotalScore >= newGame.WINNING_SCORE) {
 							break;
 						}
 
@@ -131,6 +132,7 @@ public class PigGame {
 						if (pigDice.getValue() == 1) {
 
 							// Print out the total score of the user
+							System.out.println("You LOSE your turn");
 							System.out.println("Your total score:   " + userTotalScore + "\n");
 							System.out.println(); // adding spacing
 
@@ -163,7 +165,7 @@ public class PigGame {
 					}
 
 					// Current score + the next roll is less than the threshold
-					if (compCurrentScore + pigDice.roll() < COMPUTER_HOLD_THRESHOLD) {
+					if (compCurrentScore + pigDice.roll() < newGame.COMPUTER_HOLD_THRESHOLD) {
 
 						// Ask user to press enter for computer to run
 						System.out.println("Press enter for computer's turn -> ");
@@ -232,7 +234,7 @@ public class PigGame {
 						 * If the computer's total score is
 						 * greater than 100
 						 */
-						if (compTotalScore >= WINNING_SCORE) {
+						if (compTotalScore >= newGame.WINNING_SCORE) {
 							break;
 						}
 
@@ -245,13 +247,15 @@ public class PigGame {
 			}
 
 			// The user wins!
-			if (userTotalScore >= WINNING_SCORE) {
+			if (userTotalScore >= newGame.WINNING_SCORE) {
 				System.out.println("Congratulations!!! YOU WON!!!!");
+				System.out.println(); // adding spacing
 				System.out.println("Thanks for playing the Pig Game!!!");
 				System.out.println(); // adding spacing
 			} else { // The computer wins :(
-				System.out.println("Unfortunately you lose...");
-				System.out.println("Thanks for playing the Pig Game :)");
+				System.out.println("Too bad. COMPUTER WON");
+				System.out.println(); // adding spacing
+				System.out.println("Thanks for playing the Pig Game!!!");
 				System.out.println(); // adding spacing
 			}
 
@@ -280,7 +284,7 @@ public class PigGame {
 			// Loop through the number of turns
 			for (int i = 0; i < turns; i++) {
 				// while the computer's current score is less than 20
-				while (compCurrentScore < COMPUTER_HOLD_THRESHOLD) {
+				while (compCurrentScore < newGame.COMPUTER_HOLD_THRESHOLD) {
 					/*
 					 * Call the method to get value of the roll and
 					 * add the value to the computer's current score
