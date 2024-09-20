@@ -63,8 +63,7 @@ public class PigGame {
 
 		// Asks the user to either play game or statistics
 		decision = Prompt.getChar("Play game or Statistics (p or s)");
-
-
+		
 
 		if (decision == 'p') { // User plays the game
 
