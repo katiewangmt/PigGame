@@ -315,7 +315,8 @@ public class PigGame {
 			System.out.printf(" 23 %.5f%n", (double) points[23] / turns);
 			System.out.printf(" 24 %.5f%n", (double) points[24] / turns);
 			System.out.printf(" 25 %.5f%n", (double) points[25] / turns);
-
+			System.out.println();
+			
 			// close the int scanner
 			numTurns.close();
 		}
